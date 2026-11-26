@@ -69,7 +69,7 @@ optional-dependencies.docs = [
 optional-dependencies.generator = [
   "ruff",
   "click",
-  "datamodel-code-generator==0.43.1"
+  "datamodel-code-generator==0.92.0"
 ]
 optional-dependencies.dev = [
   "mypy",
