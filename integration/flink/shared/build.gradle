@@ -104,7 +104,7 @@ dependencies {
     compileOnly "org.apache.flink:flink-avro-confluent-registry:$flinkVersion"
     compileOnly "org.apache.iceberg:iceberg-flink-runtime-${versions.alternativeShort}:${versions.iceberg}"
     compileOnly "org.apache.flink:flink-connector-jdbc:${versions.jdbc}"
-    compileOnly "com.google.protobuf:protobuf-java:3.25.3"
+    compileOnly "com.google.protobuf:protobuf-java:4.36.2"
 
     annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
 
@@ -123,7 +123,7 @@ dependencies {
     testImplementation "org.apache.flink:flink-avro-confluent-registry:$flinkVersion"
     testImplementation "org.apache.iceberg:iceberg-flink-runtime-${versions.alternativeShort}:${versions.iceberg}"
     testImplementation platform('org.junit:junit-bom:5.14.4')
-    testImplementation 'org.hamcrest:hamcrest-library:2.2'
+    testImplementation 'org.hamcrest:hamcrest-library:3.0'
     testImplementation "org.testcontainers:mockserver:${testcontainersVersion}"
     testImplementation "org.testcontainers:junit-jupiter:${testcontainersVersion}"
     testImplementation 'org.mock-server:mockserver-client-java:5.15.0'
@@ -140,7 +140,7 @@ dependencies {
     testImplementation "org.mockito:mockito-inline:${mockitoVersion}"
     testImplementation "org.mockito:mockito-junit-jupiter:${mockitoVersion}"
     testImplementation "org.projectlombok:lombok:${lombokVersion}"
-    testImplementation "com.google.protobuf:protobuf-java:3.25.3"
+    testImplementation "com.google.protobuf:protobuf-java:4.36.2"
     testImplementation("org.slf4j:slf4j-api:2.0.20")
     testImplementation("org.slf4j:slf4j-simple:2.0.20")
 
@@ -149,6 +149,6 @@ dependencies {
 
 protobuf {
     protoc {
-        artifact = "com.google.protobuf:protoc:3.25.3"
+        artifact = "com.google.protobuf:protoc:4.36.2"
     }
 }
