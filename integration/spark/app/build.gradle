@@ -29,16 +29,16 @@ ext {
     assertjVersion = '3.27.7'
     bigqueryVersion = '0.42.2'
     junit5Version = '5.14.4'
-    mockitoVersion = '4.11.0'
+    mockitoVersion = '5.2.0'
     postgresqlVersion = '42.7.14'
     testcontainersVersion = '1.21.4'
-    awssdkVersion = '2.57.1'
+    awssdkVersion = '2.59.4'
     configurableTestConfig = [
             sparkConfFile: project.findProperty('spark.conf.file') ?: System.getProperty('spark.conf.file'),
             hostDir      : project.findProperty('host.dir') ?: System.getProperty('host.dir'),
             testDir      : project.findProperty('test.dir') ?: System.getProperty('test.dir')
     ]
-    micrometerVersion = '1.17.1'
+    micrometerVersion = '1.17.2'
 }
 
 // This workaround is needed because the version of Snappy that Spark 2.4.x runs with,
@@ -126,7 +126,7 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation("org.postgresql:postgresql:${postgresqlVersion}")
     testImplementation('org.hamcrest:hamcrest-library:3.0')
-    testImplementation('org.xerial:sqlite-jdbc:3.53.4.0')
+    testImplementation('org.xerial:sqlite-jdbc:3.54.1.0')
     testImplementation(platform("org.testcontainers:testcontainers-bom:${testcontainersVersion}"))
     testImplementation("org.testcontainers:junit-jupiter")
     testImplementation("org.testcontainers:postgresql")
@@ -139,7 +139,7 @@ dependencies {
     testImplementation("org.mockito:mockito-core:${mockitoVersion}")
     testImplementation("org.mockito:mockito-inline:${mockitoVersion}")
     testImplementation("org.mockito:mockito-junit-jupiter:${mockitoVersion}")
-    testImplementation("com.databricks:databricks-sdk-java:0.32.2") {
+    testImplementation("com.databricks:databricks-sdk-java:0.184.0") {
         exclude group: 'com.fasterxml.jackson.core'
         exclude group: 'com.fasterxml.jackson.module'
     }
@@ -158,10 +158,10 @@ dependencies {
     }
     testImplementation("io.micrometer:micrometer-core:${micrometerVersion}")
     testImplementation("io.micrometer:micrometer-registry-statsd:${micrometerVersion}")
-    testImplementation('net.javacrumbs.json-unit:json-unit-assertj:2.38.0')
-    testImplementation('net.javacrumbs.json-unit:json-unit-core:2.38.0')
+    testImplementation('net.javacrumbs.json-unit:json-unit-assertj:6.4.0')
+    testImplementation('net.javacrumbs.json-unit:json-unit-core:6.4.0')
 
-    testRuntimeOnly("org.slf4j:slf4j-api:2.0.16")
+    testRuntimeOnly("org.slf4j:slf4j-api:2.0.20")
     testRuntimeOnly(platform("org.apache.logging.log4j:log4j-bom:2.26.1"))
     testRuntimeOnly("org.apache.logging.log4j:log4j-api")
     testRuntimeOnly("org.apache.logging.log4j:log4j-core")
@@ -686,18 +686,18 @@ List<Dependency> hadoopClientDependencies(String spark, String scala) {
 List<Dependency> additionalJars(String spark, String scala) {
     final def registry = [
             "2.4.8": [
-                    dependencies.create("org.slf4j:slf4j-api:1.7.16"),
-                    dependencies.create("org.slf4j:slf4j-log4j12:1.7.16"),
+                    dependencies.create("org.slf4j:slf4j-api:2.0.20"),
+                    dependencies.create("org.slf4j:slf4j-log4j12:2.0.20"),
                     // 2.10.2 is the latest stable for Spark 2
-                    dependencies.create("org.apache.hadoop:hadoop-common:2.10.2", {
+                    dependencies.create("org.apache.hadoop:hadoop-common:3.5.0", {
                         exclude(group: "org.slf4j")
                     }),
                     // 2.10.2 is the latest stable for Spark 2
-                    dependencies.create("org.apache.hadoop:hadoop-mapreduce-client-core:2.10.2", {
+                    dependencies.create("org.apache.hadoop:hadoop-mapreduce-client-core:3.5.0", {
                         exclude(group: "org.slf4j")
                     }),
                     // 2.10.2 is the latest stable for Spark 2
-                    dependencies.create("org.apache.hadoop:hadoop-mapreduce-client-common:2.10.2", {
+                    dependencies.create("org.apache.hadoop:hadoop-mapreduce-client-common:3.5.0", {
                         exclude(group: "org.slf4j")
                     }),
                     // Yes, believe it or not, the Spark binaries without hadoop exclude hive
@@ -727,7 +727,7 @@ List<Dependency> additionalJars(String spark, String scala) {
                     dependencies.create("org.apache.iceberg:iceberg-spark-runtime-3.4_${scala}:1.6.0")
             ],
             "3.5.6": [
-                    dependencies.create("org.slf4j:slf4j-api:2.0.10"),
+                    dependencies.create("org.slf4j:slf4j-api:2.0.20"),
                     dependencies.create("org.slf4j:slf4j-reload4j:2.0.20"),
                     dependencies.create("org.apache.spark:spark-mllib_${scala}:${spark}", {
                         transitive = false
