@@ -14,9 +14,9 @@ plugins {
 ext {
     assertjVersion = '3.27.7'
     junit5Version = '5.14.4'
-    mockitoVersion = '4.11.0'
+    mockitoVersion = '5.2.0'
     lombokVersion = '1.18.30'
-    micrometerVersion = '1.14.1'
+    micrometerVersion = '1.17.2'
     postgresqlVersion = "42.7.14"
 
     sparkProp = project.findProperty('spark.version').toString()
